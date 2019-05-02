@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+body {
+  background-color: black;
+  color: #ccc;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.5rem;
+  padding: 5px;
+}
+
+section {
+  margin: 0 auto 0 auto;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+td {
+  width: 20%;
+}
+table{
+  text-align: center;
+}
+@media (max-width: 768px) {
+  body {
+    font-size: 18px;
+  }
+}

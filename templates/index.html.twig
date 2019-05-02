@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MainController!{% endblock %}
+
+{% block body %}
+  <p class="center">Bitcoin price</p>
+  <section>
+    <table>
+      <tr>
+        <th>Date</th>
+        <th>USD</th>
+        <th>PLN</th>
+        <th>Pounds</th>
+        <th>Euro</th>
+      </tr>
+        <tr>
+          <td>Currently</td>
+          <td>{{ usd|round }}</td>
+          <td>{{ pln|round }}</td>
+          <td>{{ gbp|round }}</td>
+          <td>{{ eur|round }}</td>
+        </tr>
+        <tr>
+          <td>Yesterday</td>
+          <td>{{ history|round }}</td>
+          <td>{{ history|round }}</td>
+          <td>{{ history|round }}</td>
+          <td>{{ history|round }}</td>
+        </tr>
+      </table>
+    </section>
+  {% endblock %}
