@@ -1,15 +1,65 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+  <head>
+    <meta charset="UTF-8">
+    <title>
+      {% block title %}Welcome!{% endblock %}
+    </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    {% block stylesheets %}{% endblock %}
+  </head>
+  <body onload="json();">
+    {% block body %}{% endblock %}
+    {% block javascripts %}
+      <script>
+        function json() {
+          var xmlhttp = new XMLHttpRequest();
+          var url = "/data";
+
+          xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              var myArr = JSON.parse(this.responseText);
+              myFunction(myArr);
+            }
+          };
+          xmlhttp.open("GET", url, true);
+          xmlhttp.send();
+
+          function myFunction(data) {
+            document.getElementById("usd").innerHTML = data['usd'] + " $";
+            document.getElementById("pln").innerHTML = data['pln'] + " PLN";
+            document.getElementById("eur").innerHTML = data['eur'] + " EUR";
+            document.getElementById("gbp").innerHTML = data['gbp'] + " GBP";
+            document.getElementById("jpy").innerHTML = data['jpy'] + " JPY";
+            document.getElementById("chf").innerHTML = data['chf'] + " CHF";
+            if (data['yesterday'] >= 0) {
+              document.getElementById("yesterday").innerHTML = "<span class=' high '>" + data['yesterday'] + "</span>";
+            } else {
+              document.getElementById("yesterday").innerHTML = "<span class=' low '>" + data['yesterday'] + "</span>";
+            }
+            if (data['weekago'] >= 0) {
+              document.getElementById("weekago").innerHTML = "<span class=' high '>" + data['weekago'] + "</span>";
+            } else {
+              document.getElementById("weekago").innerHTML = "<span class=' low '>" + data['weekago'] + "</span>";
+            }
+            if (data['monthago'] >= 0) {
+              document.getElementById("monthago").innerHTML = "<span class=' high '>" + data['monthago'] + "</span>";
+            } else {
+              document.getElementById("monthago").innerHTML = "<span class=' low '>" + data['monthago'] + "</span>";
+            }
+          }
+        }
+        window.setInterval(function() {
+          var date = new Date();
+          var second = date.getSeconds();
+          document.getElementById("updated").innerHTML = second + " second ago";
+          if (second == 0) {
+            json();
+          }
+        }, 1000);
+      </script>
+    {% endblock %}
+  </body>
 </html>

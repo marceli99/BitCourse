@@ -3,17 +3,13 @@
 {% block title %}BitCourse{% endblock %}
 
 {% block body %}
-<nav>
-<div>{{ (exchange.rates.PLN * usd)|round }} PLN</div>
-<div>{{ (exchange.rates.EUR * usd)|round }} EUR</div>
-<div>{{ (exchange.rates.GBP * usd)|round }} GBP</div>
-<div>{{ (exchange.rates.JPY * usd)|round }} JPY</div>
-<div>{{ (exchange.rates.CHF * usd)|round }} CHF</div>
-
-
-
-
-</nav>
+  <nav>
+    <div id="pln"></div>
+    <div id="eur"></div>
+    <div id="gbp"></div>
+    <div id="jpy"></div>
+    <div id="chf"></div>
+  </nav>
   <p class="center">Bitcoin price</p>
   <section>
     <table>
@@ -25,27 +21,12 @@
         <th>Month ago</th>
       </tr>
       <tr>
-        <td>{{ usd|round }}$</td>
-        <td>
-          {% if yesterday >= 0 %}
-            <span class="high">{{ yesterday }}</span>
-          {% else %}
-            <span class="low">{{ yesterday }}</span>
-          {% endif %}
+        <td id="usd"></td>
+        <td id="yesterday">
         </td>
-        <td>
-          {% if weekago >= 0 %}
-            <span class="high">{{ weekago }}</span>
-          {% else %}
-            <span class="low">{{ weekago }}</span>
-          {% endif %}
+        <td id="weekago">
         </td>
-        <td>
-          {% if monthago >= 0 %}
-            <span class="high">{{ monthago }}</span>
-          {% else %}
-            <span class="low">{{ monthago }}</span>
-          {% endif %}
+        <td id="monthago">
         </td>
       </tr>
     </table>
@@ -138,6 +119,6 @@
     </script>
   </section>
   <footer>
-    Updated: 
+    Updated: <span id="updated"></span>
   </footer>
 {% endblock %}

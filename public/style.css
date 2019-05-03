@@ -26,9 +26,8 @@ section {
 }
 footer{
   border-top: 1px solid #171717;
-  display: flex;
-  justify-content: space-around;
   font-size: 17px;
+  text-align: center;
 }
 .high {
   color: green;
