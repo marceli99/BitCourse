@@ -2,17 +2,40 @@
 
 body {
   background-color: black;
-  color: #ccc;
+  color: #777;
   font-family: 'Open Sans', sans-serif;
   font-size: 1.5rem;
   padding: 5px;
+  margin: 0 auto;
 }
-
+nav{
+  border-bottom: 1px solid #171717;
+  display: flex;
+  justify-content: space-around;
+}
+nav div{
+  padding: 5px;
+}
 section {
   margin: 0 auto 0 auto;
   max-width: 1200px;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+footer{
+  border-top: 1px solid #171717;
+  display: flex;
   justify-content: space-around;
+  font-size: 17px;
+}
+.high {
+  color: green;
+}
+
+.low {
+  color: red;
 }
 
 .center {
@@ -20,12 +43,30 @@ section {
   justify-content: center;
 }
 
+table {
+  border-collapse: collapse;
+  margin: 35px;
+}
+
 td {
-  width: 20%;
-}
-table{
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  padding: 7px;
   text-align: center;
+  min-width: 75px;
 }
+
+th {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  padding: 7px;
+}
+
+td, th {
+  border: 1px solid #171717;
+}
+
 @media (max-width: 768px) {
   body {
     font-size: 18px;

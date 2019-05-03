@@ -1,32 +1,143 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
+{% block title %}BitCourse{% endblock %}
 
 {% block body %}
+<nav>
+<div>{{ (exchange.rates.PLN * usd)|round }} PLN</div>
+<div>{{ (exchange.rates.EUR * usd)|round }} EUR</div>
+<div>{{ (exchange.rates.GBP * usd)|round }} GBP</div>
+<div>{{ (exchange.rates.JPY * usd)|round }} JPY</div>
+<div>{{ (exchange.rates.CHF * usd)|round }} CHF</div>
+
+
+
+
+</nav>
   <p class="center">Bitcoin price</p>
   <section>
     <table>
       <tr>
-        <th>Date</th>
-        <th>USD</th>
-        <th>PLN</th>
-        <th>Pounds</th>
-        <th>Euro</th>
+        <th rowspan="2">Price</th>
+        <th>Today</th>
+        <th>Yesterday</th>
+        <th>Week ago</th>
+        <th>Month ago</th>
       </tr>
-        <tr>
-          <td>Currently</td>
-          <td>{{ usd|round }}</td>
-          <td>{{ pln|round }}</td>
-          <td>{{ gbp|round }}</td>
-          <td>{{ eur|round }}</td>
-        </tr>
-        <tr>
-          <td>Yesterday</td>
-          <td>{{ history|round }}</td>
-          <td>{{ history|round }}</td>
-          <td>{{ history|round }}</td>
-          <td>{{ history|round }}</td>
-        </tr>
-      </table>
-    </section>
-  {% endblock %}
+      <tr>
+        <td>{{ usd|round }}$</td>
+        <td>
+          {% if yesterday >= 0 %}
+            <span class="high">{{ yesterday }}</span>
+          {% else %}
+            <span class="low">{{ yesterday }}</span>
+          {% endif %}
+        </td>
+        <td>
+          {% if weekago >= 0 %}
+            <span class="high">{{ weekago }}</span>
+          {% else %}
+            <span class="low">{{ weekago }}</span>
+          {% endif %}
+        </td>
+        <td>
+          {% if monthago >= 0 %}
+            <span class="high">{{ monthago }}</span>
+          {% else %}
+            <span class="low">{{ monthago }}</span>
+          {% endif %}
+        </td>
+      </tr>
+    </table>
+    <canvas id="myChart" width="400" height="150"></canvas>
+    <script>
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: [
+            '6Y',
+            '5Y',
+            '4Y',
+            '3Y',
+            '2Y',
+            '2017-12-16',
+            '1Y',
+            '6M',
+            '3M',
+            '2M',
+            '1M',
+            '3W',
+            '2W',
+            '1W',
+            '3D',
+            '2D',
+            '1D',
+            'Today'
+          ],
+          datasets: [
+            {
+              label: 'Bitcoin price',
+              data: [
+                {{ chart.0 }},
+                {{ chart.1 }},
+                {{ chart.2 }},
+                {{ chart.3 }},
+                {{ chart.4 }},
+                {{ chart.5 }},
+                {{ chart.6 }},
+                {{ chart.7 }},
+                {{ chart.8 }},
+                {{ chart.9 }},
+                {{ chart.10 }},
+                {{ chart.11 }},
+                {{ chart.12 }},
+                {{ chart.13 }},
+                {{ chart.14 }},
+                {{ chart.15 }},
+                {{ chart.16 }},
+                {{ chart.17 }}
+              ],
+              backgroundColor: ['rgba(111, 111, 111, 0.2)'],
+              borderColor: [
+                'rgba(137, 137, 137, 1)',
+                'rgba(137, 137, 137, 1)',
+                'rgba(137, 137, 137, 1)',
+                'rgba(137, 137, 137, 1)',
+                'rgba(137, 137, 137, 1)',
+                'rgba(137, 137, 137, 1)',
+                'rgba(137, 137, 137, 1)',
+                'rgba(137, 137, 137, 1)',
+                'rgba(137, 137, 137, 1)',
+                'rgba(137, 137, 137, 1)',
+                'rgba(137, 137, 137, 1)',
+                'rgba(137, 137, 137, 1)',
+                'rgba(137, 137, 137, 1)',
+                'rgba(137, 137, 137, 1)',
+                'rgba(137, 137, 137, 1)',
+                'rgba(137, 137, 137, 1)',
+                'rgba(137, 137, 137, 1)',
+                'rgba(137, 137, 137, 1)'
+              ],
+              borderWidth: 1
+            }
+          ]
+        },
+        options: {
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: true
+                }
+              }
+            ]
+          }
+        }
+      });
+    </script>
+  </section>
+  <footer>
+    Updated: 
+  </footer>
+{% endblock %}
