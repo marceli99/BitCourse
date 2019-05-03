@@ -4,11 +4,11 @@
 
 {% block body %}
   <nav>
-    <div id="pln"></div>
-    <div id="eur"></div>
-    <div id="gbp"></div>
-    <div id="jpy"></div>
-    <div id="chf"></div>
+    <div id="pln">-</div>
+    <div id="eur">-</div>
+    <div id="gbp">-</div>
+    <div id="jpy">-</div>
+    <div id="chf">-</div>
   </nav>
   <p class="center">Bitcoin price</p>
   <section>
@@ -21,12 +21,12 @@
         <th>Month ago</th>
       </tr>
       <tr>
-        <td id="usd"></td>
-        <td id="yesterday">
+        <td id="usd">-</td>
+        <td id="yesterday">-
         </td>
-        <td id="weekago">
+        <td id="weekago">-
         </td>
-        <td id="monthago">
+        <td id="monthago">-
         </td>
       </tr>
     </table>
@@ -46,13 +46,10 @@
             '1Y',
             '6M',
             '3M',
-            '2M',
             '1M',
             '3W',
-            '2W',
             '1W',
             '3D',
-            '2D',
             '1D',
             'Today'
           ],
@@ -119,6 +116,6 @@
     </script>
   </section>
   <footer>
-    Updated: <span id="updated"></span>
+    Updated: <span id="updated">-</span> second ago | <a href="/data">API</a>
   </footer>
 {% endblock %}

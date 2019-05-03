@@ -6,8 +6,7 @@
       {% block title %}Welcome!{% endblock %}
     </title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <script src="chart.js"></script>
     {% block stylesheets %}{% endblock %}
   </head>
   <body onload="json();">
@@ -54,7 +53,7 @@
         window.setInterval(function() {
           var date = new Date();
           var second = date.getSeconds();
-          document.getElementById("updated").innerHTML = second + " second ago";
+          document.getElementById("updated").innerHTML = second;
           if (second == 0) {
             json();
           }
