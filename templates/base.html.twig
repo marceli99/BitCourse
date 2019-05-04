@@ -3,11 +3,14 @@
   <head>
     <meta charset="UTF-8">
     <title>
-      {% block title %}Welcome!{% endblock %}
+      {% block title %}{% endblock %}
     </title>
     <link rel="stylesheet" href="style.css">
     <script src="chart.js"></script>
-    {% block stylesheets %}{% endblock %}
+    <meta name="description" content="Cryptocurrency chart and price">
+    <meta name="keywords" content="bitcoin, etherum, crypto, Cryptocurrency, price, chart">
+    	<meta http-equiv="content-language" content="en">
+    <link rel="shortcut icon" href="images/favicon.png">
   </head>
   <body onload="json();">
     {% block body %}{% endblock %}
