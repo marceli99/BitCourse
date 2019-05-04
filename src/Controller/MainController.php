@@ -14,9 +14,10 @@ class MainController extends AbstractController
     public function index()
     {
       $json = json_decode(file_get_contents("/current.json"), true);
-      # $exchange = json_decode(file_get_contents("https://api.exchangeratesapi.io/latest?base=USD"), true); # FOR DEVELOPMENT ONLY
-      $today = date("Y-m-d");
-      $history = json_decode(file_get_contents("https://api.coindesk.com/v1/bpi/historical/close.json?start=2012-07-17&end={$today}"), true);
+      # $json = json_decode(file_get_contents("https://api.coindesk.com/v1/bpi/currentprice.json"), true); # DEVELOPMENT ONLY
+      $exchange = json_decode(file_get_contents("/exchange.json"), true);
+      # $exchange = json_decode(file_get_contents("https://api.exchangeratesapi.io/latest?base=USD"), true); # DEVELOPMENT ONLY      $today = date("Y-m-d");
+      $history = json_decode(file_get_contents("https://api.coindesk.com/v1/bpi/historical/close.json?start=2010-07-17&end={$today}"), true);
       $chart = [
         $history['bpi'][date ( 'Y-m-d' , strtotime ( '-6 year' , strtotime ( $today ) ) )],
         $history['bpi'][date ( 'Y-m-d' , strtotime ( '-5 year' , strtotime ( $today ) ) )],
@@ -48,7 +49,9 @@ class MainController extends AbstractController
     public function data()
     {
       $exchange = json_decode(file_get_contents("/current.json"), true);
-      # $exchange = json_decode(file_get_contents("https://api.exchangeratesapi.io/latest?base=USD"), true); # FOR DEVELOPMENT ONLY
+      # $json = json_decode(file_get_contents("https://api.coindesk.com/v1/bpi/currentprice.json"), true); # DEVELOPMENT ONLY
+      $exchange = json_decode(file_get_contents("/exchange.json"), true);
+      # $exchange = json_decode(file_get_contents("https://api.exchangeratesapi.io/latest?base=USD"), true); # DEVELOPMENT ONLY
       $json = json_decode(file_get_contents("https://api.coindesk.com/v1/bpi/currentprice.json"), true);
       $today = date("Y-m-d");
       $history = json_decode(file_get_contents("https://api.coindesk.com/v1/bpi/historical/close.json?start=2010-07-17&end={$today}"), true);
