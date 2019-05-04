@@ -10,13 +10,6 @@ class DataService
       $today = date("Y-m-d");
       $history = json_decode(file_get_contents("https://api.coindesk.com/v1/bpi/historical/close.json?start=2010-07-17&end={$today}"), true);
       $chart = [
-        $history['bpi'][date ( 'Y-m-d' , strtotime ( '-6 year' , strtotime ( $today ) ) )],
-        $history['bpi'][date ( 'Y-m-d' , strtotime ( '-5 year' , strtotime ( $today ) ) )],
-        $history['bpi'][date ( 'Y-m-d' , strtotime ( '-4 year' , strtotime ( $today ) ) )],
-        $history['bpi'][date ( 'Y-m-d' , strtotime ( '-3 year' , strtotime ( $today ) ) )],
-        $history['bpi'][date ( 'Y-m-d' , strtotime ( '-2 year' , strtotime ( $today ) ) )],
-        $history['bpi']['2017-12-16'],
-        $history['bpi'][date ( 'Y-m-d' , strtotime ( '-1 year' , strtotime ( $today ) ) )],
         $history['bpi'][date ( 'Y-m-d' , strtotime ( '-6 month' , strtotime ( $today ) ) )],
         $history['bpi'][date ( 'Y-m-d' , strtotime ( '-3 month' , strtotime ( $today ) ) )],
         $history['bpi'][date ( 'Y-m-d' , strtotime ( '-2 month' , strtotime ( $today ) ) )],
@@ -24,6 +17,9 @@ class DataService
         $history['bpi'][date ( 'Y-m-d' , strtotime ( '-3 week' , strtotime ( $today ) ) )],
         $history['bpi'][date ( 'Y-m-d' , strtotime ( '-2 week' , strtotime ( $today ) ) )],
         $history['bpi'][date ( 'Y-m-d' , strtotime ( '-1 week' , strtotime ( $today ) ) )],
+        $history['bpi'][date ( 'Y-m-d' , strtotime ( '-6 day' , strtotime ( $today ) ) )],
+        $history['bpi'][date ( 'Y-m-d' , strtotime ( '-5 day' , strtotime ( $today ) ) )],
+        $history['bpi'][date ( 'Y-m-d' , strtotime ( '-4 day' , strtotime ( $today ) ) )],
         $history['bpi'][date ( 'Y-m-d' , strtotime ( '-3 day' , strtotime ( $today ) ) )],
         $history['bpi'][date ( 'Y-m-d' , strtotime ( '-2 day' , strtotime ( $today ) ) )],
         $history['bpi'][date ( 'Y-m-d' , strtotime ( '-1 day' , strtotime ( $today ) ) )],
