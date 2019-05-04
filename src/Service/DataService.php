@@ -38,6 +38,8 @@ class DataService
       $weekago = date ( 'Y-m-d' , $weekago );
       $monthago = strtotime ( '-1 month' , strtotime ( $today ) ) ;
       $monthago = date ( 'Y-m-d' , $monthago );
+      $yearago = strtotime ( '-1 year' , strtotime ( $today ) ) ;
+      $yearago = date ( 'Y-m-d' , $yearago );
       $json = [
       'usd' => round($json['bpi']['USD']['rate_float'], 0),
       'eur' => round($json['bpi']['USD']['rate_float'] * $exchange['rates']['EUR'], 0),
@@ -47,7 +49,8 @@ class DataService
       'chf' => round($json['bpi']['USD']['rate_float'] * $exchange['rates']['CHF'], 0),
       'yesterday' => round((($json['bpi']['USD']['rate_float'] / $history['bpi'][$yesterday]) - 1) * 100, 2),
       'weekago' => round((($json['bpi']['USD']['rate_float'] / $history['bpi'][$weekago]) - 1) * 100, 2),
-      'monthago' => round((($json['bpi']['USD']['rate_float'] / $history['bpi'][$monthago]) - 1) * 100, 2)
+      'monthago' => round((($json['bpi']['USD']['rate_float'] / $history['bpi'][$monthago]) - 1) * 100, 2),
+      'yearago' => round((($json['bpi']['USD']['rate_float'] / $history['bpi'][$yearago]) - 1) * 100, 2)
 
     ];
     return $json;

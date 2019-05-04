@@ -48,6 +48,11 @@
             } else {
               document.getElementById("monthago").innerHTML = "<span class=' low '>" + data['monthago'] + "</span>";
             }
+            if (data['yearago'] >= 0) {
+              document.getElementById("yearago").innerHTML = "<span class=' high '>" + data['yearago'] + "</span>";
+            } else {
+              document.getElementById("yearago").innerHTML = "<span class=' low '>" + data['yearago'] + "</span>";
+            }
           }
         }
         window.setInterval(function() {

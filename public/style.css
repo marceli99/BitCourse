@@ -129,7 +129,14 @@ th {
 td, th {
   border: 1px solid #171717;
 }
-
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: ease-in-out 2s;
+}
+a:hover {
+    color: #bbb;
+    transition: ease-in-out 0.4s;
 @keyframes chartjs-render-animation {
   from {
     opacity: .99
