@@ -1,4 +1,4 @@
-# BitCourse
+# BitCourse :chart_with_upwards_trend:
 
 BitCourse is simple App which display current bitcoin price and chart in few currencies.
 ### API
