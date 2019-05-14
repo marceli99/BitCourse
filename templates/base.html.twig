@@ -1,72 +1,73 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="UTF-8">
     <title>
-      {% block title %}{% endblock %}
+        {% block title %}{% endblock %}
     </title>
     <link rel="stylesheet" href="style.css">
     <script src="chart.js"></script>
     <meta name="description" content="Cryptocurrency chart and price">
     <meta name="keywords" content="bitcoin, etherum, crypto, Cryptocurrency, price, chart">
-    	<meta http-equiv="content-language" content="en">
+    <meta http-equiv="content-language" content="en">
     <link rel="shortcut icon" href="images/favicon.png">
-  </head>
-  <body onload="json();">
-    {% block body %}{% endblock %}
-    {% block javascripts %}
-      <script>
+</head>
+<body onload="json();">
+{% block body %}{% endblock %}
+{% block javascripts %}
+    <script>
         function json() {
-          var xmlhttp = new XMLHttpRequest();
-          var url = "/data";
+            var xmlhttp = new XMLHttpRequest();
+            var url = "/data";
 
-          xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-              var myArr = JSON.parse(this.responseText);
-              myFunction(myArr);
-            }
-          };
-          xmlhttp.open("GET", url, true);
-          xmlhttp.send();
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var myArr = JSON.parse(this.responseText);
+                    myFunction(myArr);
+                }
+            };
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
 
-          function myFunction(data) {
-            document.getElementById("usd").innerHTML = data['usd'] + " $";
-            document.getElementById("pln").innerHTML = data['pln'] + " PLN";
-            document.getElementById("eur").innerHTML = data['eur'] + " EUR";
-            document.getElementById("gbp").innerHTML = data['gbp'] + " GBP";
-            document.getElementById("jpy").innerHTML = data['jpy'] + " JPY";
-            document.getElementById("chf").innerHTML = data['chf'] + " CHF";
-            if (data['yesterday'] >= 0) {
-              document.getElementById("yesterday").innerHTML = "<span class=' high '>" + data['yesterday'] + "</span>";
-            } else {
-              document.getElementById("yesterday").innerHTML = "<span class=' low '>" + data['yesterday'] + "</span>";
+            function myFunction(data) {
+                document.getElementById("usd").innerHTML = data['usd'] + " $";
+                document.getElementById("pln").innerHTML = data['pln'] + " PLN";
+                document.getElementById("eur").innerHTML = data['eur'] + " EUR";
+                document.getElementById("gbp").innerHTML = data['gbp'] + " GBP";
+                document.getElementById("jpy").innerHTML = data['jpy'] + " JPY";
+                document.getElementById("chf").innerHTML = data['chf'] + " CHF";
+                if (data['yesterday'] >= 0) {
+                    document.getElementById("yesterday").innerHTML = "<span class=' high '>" + data['yesterday'] + "</span>";
+                } else {
+                    document.getElementById("yesterday").innerHTML = "<span class=' low '>" + data['yesterday'] + "</span>";
+                }
+                if (data['weekago'] >= 0) {
+                    document.getElementById("weekago").innerHTML = "<span class=' high '>" + data['weekago'] + "</span>";
+                } else {
+                    document.getElementById("weekago").innerHTML = "<span class=' low '>" + data['weekago'] + "</span>";
+                }
+                if (data['monthago'] >= 0) {
+                    document.getElementById("monthago").innerHTML = "<span class=' high '>" + data['monthago'] + "</span>";
+                } else {
+                    document.getElementById("monthago").innerHTML = "<span class=' low '>" + data['monthago'] + "</span>";
+                }
+                if (data['yearago'] >= 0) {
+                    document.getElementById("yearago").innerHTML = "<span class=' high '>" + data['yearago'] + "</span>";
+                } else {
+                    document.getElementById("yearago").innerHTML = "<span class=' low '>" + data['yearago'] + "</span>";
+                }
             }
-            if (data['weekago'] >= 0) {
-              document.getElementById("weekago").innerHTML = "<span class=' high '>" + data['weekago'] + "</span>";
-            } else {
-              document.getElementById("weekago").innerHTML = "<span class=' low '>" + data['weekago'] + "</span>";
-            }
-            if (data['monthago'] >= 0) {
-              document.getElementById("monthago").innerHTML = "<span class=' high '>" + data['monthago'] + "</span>";
-            } else {
-              document.getElementById("monthago").innerHTML = "<span class=' low '>" + data['monthago'] + "</span>";
-            }
-            if (data['yearago'] >= 0) {
-              document.getElementById("yearago").innerHTML = "<span class=' high '>" + data['yearago'] + "</span>";
-            } else {
-              document.getElementById("yearago").innerHTML = "<span class=' low '>" + data['yearago'] + "</span>";
-            }
-          }
         }
-        window.setInterval(function() {
-          var date = new Date();
-          var second = date.getSeconds();
-          document.getElementById("updated").innerHTML = second;
-          if (second == 0) {
-            json();
-          }
+
+        window.setInterval(function () {
+            var date = new Date();
+            var second = date.getSeconds();
+            document.getElementById("updated").innerHTML = second;
+            if (second == 0) {
+                json();
+            }
         }, 1000);
-      </script>
-    {% endblock %}
-  </body>
+    </script>
+{% endblock %}
+</body>
 </html>
