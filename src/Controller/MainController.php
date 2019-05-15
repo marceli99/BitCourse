@@ -2,10 +2,11 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Service\DataService;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Routing\Annotation\Route;
+
 class MainController extends AbstractController
 {
     /**
@@ -13,11 +14,12 @@ class MainController extends AbstractController
      */
     public function index()
     {
-      $DataService = new DataService();
+        $DataService = new DataService();
         return $this->render('index.html.twig', [
             'chart' => $DataService->CreateChart(),
         ]);
     }
+
     /**
      * @Route("/data", name="data")
      */
