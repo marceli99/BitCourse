@@ -4,11 +4,14 @@ namespace App\Service;
 
 class DataService
 {
-    public function CreateChart()
+    public function CreateChart(): array
     {
-        $json = json_decode(file_get_contents("current.json"), true);
-        $today = date("Y-m-d");
-        $history = json_decode(file_get_contents("history.json"), true);
+        #$json = json_decode(file_get_contents("current.json"), true);
+        $json = json_decode(file_get_contents('https://www.bitcourse.space/current.json'), true);
+        $today = date('Y-m-d');
+        #$history = json_decode(file_get_contents("history.json"), true);
+        $history = json_decode(file_get_contents('https://www.bitcourse.space/history.json'), true);
+
         $chart = [
             $history['bpi'][date('Y-m-d', strtotime('-6 month', strtotime($today)))],
             $history['bpi'][date('Y-m-d', strtotime('-3 month', strtotime($today)))],
@@ -30,10 +33,13 @@ class DataService
 
     public function DownloadData()
     {
-        $exchange = json_decode(file_get_contents("exchange.json"), true);
-        $json = json_decode(file_get_contents("current.json"), true);
-        $today = date("Y-m-d");
-        $history = json_decode(file_get_contents("history.json"), true);
+        #$exchange = json_decode(file_get_contents("exchange.json"), true);
+        $exchange = json_decode(file_get_contents('https://www.bitcourse.space/exchange.json'), true);
+        #$json = json_decode(file_get_contents("current.json"), true);
+        $json = json_decode(file_get_contents('https://www.bitcourse.space/current.json'), true);
+        $today = date('Y-m-d');
+        #$history = json_decode(file_get_contents("history.json"), true);
+        $history = json_decode(file_get_contents('https://www.bitcourse.space/history.json'), true);
         $yesterday = strtotime('-1 day', strtotime($today));
         $yesterday = date('Y-m-d', $yesterday);
         $weekago = strtotime('-1 week', strtotime($today));
@@ -43,12 +49,12 @@ class DataService
         $yearago = strtotime('-1 year', strtotime($today));
         $yearago = date('Y-m-d', $yearago);
         $json = [
-            'usd' => round($json['bpi']['USD']['rate_float'], 0),
-            'eur' => round($json['bpi']['USD']['rate_float'] * $exchange['rates']['EUR'], 0),
-            'pln' => round($json['bpi']['USD']['rate_float'] * $exchange['rates']['PLN'], 0),
-            'gbp' => round($json['bpi']['USD']['rate_float'] * $exchange['rates']['GBP'], 0),
-            'jpy' => round($json['bpi']['USD']['rate_float'] * $exchange['rates']['JPY'], 0),
-            'chf' => round($json['bpi']['USD']['rate_float'] * $exchange['rates']['CHF'], 0),
+            'usd' => round($json['bpi']['USD']['rate_float']),
+            'eur' => round($json['bpi']['USD']['rate_float'] * $exchange['rates']['EUR']),
+            'pln' => round($json['bpi']['USD']['rate_float'] * $exchange['rates']['PLN']),
+            'gbp' => round($json['bpi']['USD']['rate_float'] * $exchange['rates']['GBP']),
+            'jpy' => round($json['bpi']['USD']['rate_float'] * $exchange['rates']['JPY']),
+            'chf' => round($json['bpi']['USD']['rate_float'] * $exchange['rates']['CHF']),
             'yesterday' => round((($json['bpi']['USD']['rate_float'] / $history['bpi'][$yesterday]) - 1) * 100, 2),
             'weekago' => round((($json['bpi']['USD']['rate_float'] / $history['bpi'][$weekago]) - 1) * 100, 2),
             'monthago' => round((($json['bpi']['USD']['rate_float'] / $history['bpi'][$monthago]) - 1) * 100, 2),
