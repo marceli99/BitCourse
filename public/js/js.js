@@ -1,4 +1,4 @@
-function json() {a
+function json() {
     const xmlhttp = new XMLHttpRequest();
     const url = "/data";
 

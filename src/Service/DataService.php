@@ -6,11 +6,9 @@ class DataService
 {
     public function CreateChart(): array
     {
-        #$json = json_decode(file_get_contents("current.json"), true);
-        $json = json_decode(file_get_contents('https://www.bitcourse.space/current.json'), true);
+        $json = json_decode(file_get_contents('https://api.coindesk.com/v1/bpi/currentprice.json'), true);
         $today = date('Y-m-d');
-        #$history = json_decode(file_get_contents("history.json"), true);
-        $history = json_decode(file_get_contents('https://www.bitcourse.space/history.json'), true);
+        $history = json_decode(file_get_contents("https://api.coindesk.com/v1/bpi/historical/close.json?start=2010-07-17&end={$today}"), true);
 
         $chart = [
             $history['bpi'][date('Y-m-d', strtotime('-6 month', strtotime($today)))],
@@ -33,13 +31,10 @@ class DataService
 
     public function DownloadData()
     {
-        #$exchange = json_decode(file_get_contents("exchange.json"), true);
-        $exchange = json_decode(file_get_contents('https://www.bitcourse.space/exchange.json'), true);
-        #$json = json_decode(file_get_contents("current.json"), true);
-        $json = json_decode(file_get_contents('https://www.bitcourse.space/current.json'), true);
+        $exchange = json_decode(file_get_contents('https://api.exchangeratesapi.io/latest?base=USD'), true);
+        $json = json_decode(file_get_contents('https://api.coindesk.com/v1/bpi/currentprice.json'), true);
         $today = date('Y-m-d');
-        #$history = json_decode(file_get_contents("history.json"), true);
-        $history = json_decode(file_get_contents('https://www.bitcourse.space/history.json'), true);
+        $history = json_decode(file_get_contents("https://api.coindesk.com/v1/bpi/historical/close.json?start=2017-07-17&end={$today}"), true);
         $yesterday = strtotime('-1 day', strtotime($today));
         $yesterday = date('Y-m-d', $yesterday);
         $weekago = strtotime('-1 week', strtotime($today));
