@@ -7,17 +7,17 @@
     "ext-iconv": "*",
     "ext-json": "*",
     "sensio/framework-extra-bundle": "^5.3",
-    "symfony/asset": "^4.2",
-    "symfony/console": "^4.2",
-    "symfony/dotenv": "^4.2",
+    "symfony/asset": "^4.3",
+    "symfony/console": "^4.3",
+    "symfony/dotenv": "^4.3",
     "symfony/flex": "^1.1",
-    "symfony/framework-bundle": "^4.2",
+    "symfony/framework-bundle": "^4.3",
     "symfony/maker-bundle": "^1.11",
     "symfony/orm-pack": "^1.0",
     "symfony/profiler-pack": "^1.0",
-    "symfony/twig-bundle": "^4.2",
-    "symfony/web-server-bundle": "^4.2",
-    "symfony/yaml": "^4.2"
+    "symfony/twig-bundle": "^4.3",
+    "symfony/web-server-bundle": "^4.3",
+    "symfony/yaml": "^4.3"
   },
   "config": {
     "preferred-install": {
@@ -61,7 +61,7 @@
   "extra": {
     "symfony": {
       "allow-contrib": false,
-      "require": "4.2"
+      "require": "^4.3"
     }
   }
 }
