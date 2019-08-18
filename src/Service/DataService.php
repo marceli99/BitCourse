@@ -24,8 +24,9 @@ class DataService
             $history['bpi'][date('Y-m-d', strtotime('-3 day', strtotime($today)))],
             $history['bpi'][date('Y-m-d', strtotime('-2 day', strtotime($today)))],
             $history['bpi'][date('Y-m-d', strtotime('-1 day', strtotime($today)))],
-            $json['bpi']['USD']['rate_float']
+            $json['bpi']['USD']['rate_float'],
         ];
+
         return $chart;
     }
 
@@ -53,8 +54,9 @@ class DataService
             'yesterday' => round((($json['bpi']['USD']['rate_float'] / $history['bpi'][$yesterday]) - 1) * 100, 2),
             'weekago' => round((($json['bpi']['USD']['rate_float'] / $history['bpi'][$weekago]) - 1) * 100, 2),
             'monthago' => round((($json['bpi']['USD']['rate_float'] / $history['bpi'][$monthago]) - 1) * 100, 2),
-            'yearago' => round((($json['bpi']['USD']['rate_float'] / $history['bpi'][$yearago]) - 1) * 100, 2)
+            'yearago' => round((($json['bpi']['USD']['rate_float'] / $history['bpi'][$yearago]) - 1) * 100, 2),
         ];
+
         return $json;
     }
 }
