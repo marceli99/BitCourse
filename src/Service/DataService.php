@@ -4,6 +4,9 @@ namespace App\Service;
 
 class DataService
 {
+    /**
+     * @return array
+     */
     public function CreateChart(): array
     {
         $json = json_decode(file_get_contents('https://api.coindesk.com/v1/bpi/currentprice.json'), true);
@@ -30,7 +33,10 @@ class DataService
         return $chart;
     }
 
-    public function DownloadData()
+    /**
+     * @return array|mixed
+     */
+    public function DownloadData(): array
     {
         $exchange = json_decode(file_get_contents('https://api.exchangeratesapi.io/latest?base=USD'), true);
         $json = json_decode(file_get_contents('https://api.coindesk.com/v1/bpi/currentprice.json'), true);
